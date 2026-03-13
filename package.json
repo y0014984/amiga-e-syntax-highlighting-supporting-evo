@@ -1,0 +1,25 @@
+{
+  "name": "amiga-e-syntax-highlighting",
+  "displayName": "Amiga E Syntax Highlighting",
+  "description": "Syntax Highlighting for Amiga E incl. E-VO",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.110.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "amiga-e",
+      "aliases": ["Amiga E", "amiga-e"],
+      "extensions": [".e"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "amiga-e",
+      "scopeName": "source.e",
+      "path": "./syntaxes/amiga-e.tmLanguage.json"
+    }]
+  }
+}

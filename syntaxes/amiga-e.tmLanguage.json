@@ -1,0 +1,170 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Amiga E",
+	"scopeName": "source.e",
+	"patterns": [
+		{
+			"include": "#constants"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#procedures"
+		},
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#compiler-options"
+		}
+	],
+	"repository": {
+		"compiler-options": {
+			"name": "meta.compiler-options.amiga-e",
+			"begin": "(OPT)",
+			"end": "$",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.other.opt.amiga-e"
+				}
+			},
+			"patterns": [
+				{
+					"name": "keyword.other.compiler-option.amiga-e",
+					"match": "(LARGE|STACK|ASM|NOWARN|DIR|OSVERSION|MODULE|EXPORT|RTD|020|881|882|040|060|REG|RUNBG|PURE|STRMERGE|POOL|FPEXP|INLINE|NOSTARTUP|UTILLIB|LEGACYINT)"
+				},
+				{
+					"include": "#constants"
+				},
+				{
+					"include": "#strings"
+				},
+				{
+					"include": "#comments"
+				}
+			]
+		},
+		"keywords": {
+			"name": "keyword.control.amiga-e",
+			"match": "\\b(MODULE|DEF|OBJECT|NOALIGN|UNION|ENDUNION|ENDOBJECT|CONST|ENUM|SET|EXPORT|PROC|SAFE|GETA4|STACKCHECK|OF|MODSETUP|MODCLEANUP|NOREGS|HANDLE|RETURN|IS|EXCEPT|ENDPROC|WITH|RTR|RTE|RAISE|OPT|LONG|PTR|TO|ARRAY|STRING|LIST|BYTE|CHAR|INT|WORD|IF|IFN|THEN|ELSE|ELSEIF|ELSEIFN|ENDIF|FOR|STEP|DO|WHILE|WHILEN|ELSEWHILE|ELSEWHILEN|ALWAYS|ENDWHILE|REPEAT|UNTIL|UNTILN|SELECT|CASE|DEFAULT|ENDSELECT|LOOP|ENDLOOP|RETURN|JUMP|EXIT|EXITN|CONT|CONTN|WARN|TRUE|FALSE|FATAL|SECTION|CODE|DATA|CHIP|FAST|INC|DEC|INCBIN|VOID|NOT|BUT|SIZEOF|PSIZEOF|ARRAYSIZE|OFFSETOF|AND|OR|ANDALSO|ORELSE)\\b"
+		},
+		"constants": {
+			"name": "constant",
+			"patterns": [
+				{
+					"include": "#constant-numeric"
+				},
+				{
+					"include": "#constant-character"
+				}
+			],
+			"repository": {
+				"constant-numeric": {
+					"name": "constant.numeric",
+					"patterns": [
+						{
+							"include": "#numeric-hexadecimal"
+						},
+						{
+							"include": "#numeric-binary"
+						},
+						{
+							"include": "#numeric-float"
+						},
+						{
+							"include": "#numeric-decimal"
+						}
+					],
+					"repository": {
+						"numeric-hexadecimal": {
+							"name": "constant.numeric.hexadecimal.amiga-e",
+							"match": "-?\\$\\h+"
+						},
+						"numeric-binary": {
+							"name": "constant.numeric.binary.amiga-e",
+							"match": "-?\\%[0,1]+"
+						},
+						"numeric-float": {
+							"name": "constant.numeric.float.amiga-e",
+							"match": "-?\\d+\\.\\d+|-?\\.\\d+|-?\\d+\\."
+						},
+						"numeric-decimal": {
+							"name": "constant.numeric.decimal.amiga-e",
+							"match": "-?\\d+"
+						}
+					}
+				},
+				"constant-character": {
+					"name": "constant.character",
+					"begin": "\"",
+					"end": "\""
+				}
+			}
+		},
+		"strings": {
+			"name": "string.quoted.double.amiga-e",
+			"begin": "'",
+			"end": "'",
+			"patterns": [
+				{
+					"name": "constant.character.escape.amiga-e",
+					"match": "\\\\."
+				}
+			]
+		},
+		"comments": {
+			"name": "comment",
+			"patterns": [
+				{
+					"include": "#comments-block"
+				},
+				{
+					"include": "#comments-line"
+				}
+			],
+			"repository": {
+				"comments-block": {
+					"name": "comment.block.amiga-e",
+					"begin": "/\\*",
+					"end": "\\*/"
+				},
+				"comments-line": {
+					"name": "comment.line.amiga-e",
+					"begin": "->",
+					"end": "$"
+				}
+			}
+		},
+		"procedures": {
+			"name": "meta.function",
+			"begin": "(EXPORT\\s+PROC|PROC)\\s+",
+			"end": "(ENDPROC)",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.export-proc.amiga-e"
+				}
+			},
+			"endCaptures": {
+				"1": {
+					"name": "keyword.endproc.amiga-e"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#constants"
+				},
+				{
+					"include": "#strings"
+				},
+				{
+					"include": "#comments"
+				},
+				{
+					"name": "entity.name.function",
+					"match": "(\\w+)\\("
+				}
+			]
+		}
+	}
+}

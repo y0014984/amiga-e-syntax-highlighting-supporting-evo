@@ -2,6 +2,7 @@
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "Amiga E",
 	"scopeName": "source.e",
+	"comment": "(MODULE|DEF|OBJECT|NOALIGN|UNION|ENDUNION|ENDOBJECT|CONST|ENUM|SET|EXPORT|PROC|SAFE|GETA4|STACKCHECK|OF|MODSETUP|MODCLEANUP|NOREGS|HANDLE|IS|EXCEPT|ENDPROC|WITH|RTR|RTE|RAISE|OPT|LONG|ARRAY|STRING|LIST|BYTE|CHAR|INT|WORD|IF|IFN|THEN|ELSE|ELSEIF|ELSEIFN|ENDIF|FOR|STEP|DO|WHILE|WHILEN|ELSEWHILE|ELSEWHILEN|ALWAYS|ENDWHILE|REPEAT|UNTIL|UNTILN|SELECT|CASE|DEFAULT|ENDSELECT|LOOP|ENDLOOP|RETURN|JUMP|EXIT|EXITN|CONT|CONTN|WARN|TRUE|FALSE|FATAL|SECTION|CODE|DATA|CHIP|FAST|INC|DEC|INCBIN|VOID|NOT|BUT|SIZEOF|PSIZEOF|ARRAYSIZE|OFFSETOF|AND|OR|ANDALSO|ORELSE)",
 	"patterns": [
 		{
 			"include": "#constants"
@@ -17,6 +18,9 @@
 		},
 		{
 			"include": "#compiler-options"
+		},
+		{
+			"include": "#variable-definitions"
 		}
 	],
 	"repository": {
@@ -45,9 +49,38 @@
 				}
 			]
 		},
-		"keywords": {
+		"variable-definitions": {
+			"name": "meta.variable-definitions.amiga-e",
+			"begin": "(DEF)",
+			"end": "$",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.other.DEF.amiga-e"
+				}
+			},
+			"patterns": [
+				{
+					"name": "keyword.other.pointer.amiga-e",
+					"match": "(PTR TO LONG|PTR TO)"
+				},
+				{
+					"include": "#constants"
+				},
+				{
+					"include": "#strings"
+				},
+				{
+					"include": "#comments"
+				}
+			]
+		},
+		"keywords-flow-control": {
 			"name": "keyword.control.amiga-e",
-			"match": "\\b(MODULE|DEF|OBJECT|NOALIGN|UNION|ENDUNION|ENDOBJECT|CONST|ENUM|SET|EXPORT|PROC|SAFE|GETA4|STACKCHECK|OF|MODSETUP|MODCLEANUP|NOREGS|HANDLE|RETURN|IS|EXCEPT|ENDPROC|WITH|RTR|RTE|RAISE|OPT|LONG|PTR|TO|ARRAY|STRING|LIST|BYTE|CHAR|INT|WORD|IF|IFN|THEN|ELSE|ELSEIF|ELSEIFN|ENDIF|FOR|STEP|DO|WHILE|WHILEN|ELSEWHILE|ELSEWHILEN|ALWAYS|ENDWHILE|REPEAT|UNTIL|UNTILN|SELECT|CASE|DEFAULT|ENDSELECT|LOOP|ENDLOOP|RETURN|JUMP|EXIT|EXITN|CONT|CONTN|WARN|TRUE|FALSE|FATAL|SECTION|CODE|DATA|CHIP|FAST|INC|DEC|INCBIN|VOID|NOT|BUT|SIZEOF|PSIZEOF|ARRAYSIZE|OFFSETOF|AND|OR|ANDALSO|ORELSE)\\b"
+			"match": "\\b(RETURN)\\b"
+		},
+		"variables": {
+			"name": "keyword.control.amiga-e",
+			"match": "\\w.+(\\s|$|,|.|:=)"
 		},
 		"constants": {
 			"name": "constant",
@@ -57,6 +90,9 @@
 				},
 				{
 					"include": "#constant-character"
+				},
+				{
+					"include": "#constant-builtin"
 				}
 			],
 			"repository": {
@@ -99,6 +135,10 @@
 					"name": "constant.character",
 					"begin": "\"",
 					"end": "\""
+				},
+				"constant-builtin": {
+					"name": "constant.character",
+					"match": "(NIL|TRUE|FALSE)"
 				}
 			}
 		},
@@ -136,6 +176,33 @@
 				}
 			}
 		},
+		"if-one-line": {
+			"name": "meta.if.one-line",
+			"begin": "\\b(IF)\\b",
+			"end": "$",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.control.if.amiga-e"
+				}
+			},
+			"endCaptures": {
+				"1": {
+					"name": ""
+				}
+			},
+			"patterns": [
+				{
+					"name": "keyword.control.then.amiga-e",
+					"match": "\\b(THEN)\\b"
+				},
+				{
+					"include": "#keywords-flow-control"
+				},
+				{
+					"include": "#constants"
+				}
+			]
+		},
 		"procedures": {
 			"name": "meta.function",
 			"begin": "(EXPORT\\s+PROC|PROC)\\s+",
@@ -152,6 +219,9 @@
 			},
 			"patterns": [
 				{
+					"include": "#variable-definitions"
+				},
+				{
 					"include": "#constants"
 				},
 				{
@@ -161,8 +231,14 @@
 					"include": "#comments"
 				},
 				{
+					"include": "#if-one-line"
+				},
+				{
 					"name": "entity.name.function",
 					"match": "(\\w+)\\("
+				},
+				{
+					"include": "#keywords-flow-control"
 				}
 			]
 		}

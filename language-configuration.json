@@ -26,5 +26,11 @@
         ["(", ")"],
         ["\"", "\""],
         ["'", "'"]
-    ]
+    ],
+    "folding": {
+        "markers": {
+          "start": "\\b(?<!END)PROC\\b",
+          "end": "\\bENDPROC\\b"
+        }
+      }
 }

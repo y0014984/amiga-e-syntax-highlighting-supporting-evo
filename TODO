@@ -1,0 +1,24 @@
+- add inline assembly recognition
+- create custom theme based on the vscode default theme that additionally colors:
+   - AND|OR
+   - entity.name.section for labels
+   - different colors for variables and constants
+   - different colors for builtin functions
+- semantic syntax highlighting:
+   - distinguish 2 'module' variants: MODULE 'fvbfb' (keyword.control and entity.name.namespace) vs. OPT MODULE (keyword)
+   - distinguish 2 'export' variants: EXPORT PROC|CONST|ENUM|OBJECT etc (keyword.control) vs. OPT EXPORT (keyword)
+   - distinguish 3 'of' variants: ARRAY OF vs. PROC lala() OF lulu vs. OBJECT lala OF lulu
+   - distinguish 2 'is' variants: ENDPROC IS vs. LIBRARY IS
+   - distinguish 2 'to' variants: PTR TO vs. FOR TO STEP
+   - fix this behavior:
+      - #define GAME_VERSION_STR v0.1 -> the v0.1 at the end should be highlighted in another way, not only the .1 but the full v0.1
+   - classes and class objects
+- write feature list:
+   - folding for indentation (automatic by vscode)
+   - folding for non indented parts like PROC/ENDPROC (TODO: add others like OBJECT/ENDOBJECT)
+   - supports all keywords (TODO: some not colored)
+   - custom colors (TODO)
+   - code snippets (TODO)
+   - includes function description for library xy (TODO)
+   - includes semantic highlighting for e.g. function parameters (TODO)
+   - allows to jump to variable and function declarations (TODO)

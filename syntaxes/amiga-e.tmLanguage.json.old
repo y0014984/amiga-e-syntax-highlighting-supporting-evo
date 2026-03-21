@@ -1,0 +1,352 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Amiga E",
+	"scopeName": "source.e",
+	"comment": "(MODULE|DEF|OBJECT|NOALIGN|UNION|ENDUNION|ENDOBJECT|CONST|ENUM|SET|EXPORT|PROC|SAFE|GETA4|STACKCHECK|OF|MODSETUP|MODCLEANUP|NOREGS|HANDLE|IS|EXCEPT|ENDPROC|WITH|RTR|RTE|RAISE|OPT|LONG|ARRAY|STRING|LIST|BYTE|CHAR|INT|WORD|IF|IFN|THEN|ELSE|ELSEIF|ELSEIFN|ENDIF|FOR|STEP|DO|WHILE|WHILEN|ELSEWHILE|ELSEWHILEN|ALWAYS|ENDWHILE|REPEAT|UNTIL|UNTILN|SELECT|CASE|DEFAULT|ENDSELECT|LOOP|ENDLOOP|RETURN|JUMP|EXIT|EXITN|CONT|CONTN|WARN|TRUE|FALSE|FATAL|SECTION|CODE|DATA|CHIP|FAST|INC|DEC|INCBIN|VOID|NOT|BUT|SIZEOF|PSIZEOF|ARRAYSIZE|OFFSETOF|AND|OR|ANDALSO|ORELSE)",
+	"patterns": [
+		{
+			"include": "#compiler-options"
+		},
+		{
+			"include": "#library-declaration"
+		},
+		{
+			"include": "#module-statements"
+		},
+		{
+			"include": "#constant-declarations"
+		},
+		{
+			"include": "#constants"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#variable-definitions"
+		},
+		{
+			"include": "#procedures"
+		}
+	],
+	"repository": {
+		"compiler-options": {
+			"name": "meta.compiler-options.amiga-e",
+			"begin": "(OPT)\\s",
+			"while": "\\b(LARGE|STACK|ASM|NOWARN|DIR|OSVERSION|MODULE|EXPORT|RTD|020|881|882|040|060|REG|RUNBG|PURE|STRMERGE|POOL|FPEXP|INLINE|NOSTARTUP|UTILLIB|LEGACYINT)\\b",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.other.OPT.amiga-e"
+				}
+			},
+			"whileCaptures": {
+				"1": {
+					"name": "keyword.other.compiler-option.amiga-e"
+				}
+			},
+			"patterns": [
+				{
+					"name": "keyword.other.compiler-option.amiga-e",
+					"match": "(LARGE|STACK|ASM|NOWARN|DIR|OSVERSION|MODULE|EXPORT|RTD|020|881|882|040|060|REG|RUNBG|PURE|STRMERGE|POOL|FPEXP|INLINE|NOSTARTUP|UTILLIB|LEGACYINT)"
+				},
+				{
+					"include": "#constants"
+				},
+				{
+					"include": "#strings"
+				},
+				{
+					"include": "#comments"
+				}
+			]
+		},
+		"library-declaration": {
+			"name": "meta.library-declaration.amiga-e",
+			"begin": "(LIBRARY)\\s",
+			"while": "\\s*?(\\w+?)\\s*?",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.other.LIBRARY.amiga-e"
+				}
+			},
+			"whileCaptures": {
+				"1": {
+					"name": "entity.name.function.amiga-e"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#comments"
+				},
+				{
+					"include": "#strings"
+				},
+				{
+					"include": "#constants"
+				},
+				{
+					"name": "keyword.other.EXTRA.amiga-e",
+					"match": "\\b(EXTRA)\\b"
+				},
+				{
+					"name": "keyword.other.IS.amiga-e",
+					"match": "\\b(IS)\\b"
+				},
+				{
+					"name": "entity.name.function.amiga-e",
+					"match": "(\\w+?)"
+				}
+			]
+		},
+		"module-statements": {
+			"name": "meta.module-statements.amiga-e",
+			"begin": "(MODULE)\\s",
+			"while": "(MODULE)?\\s*?('.+?')\\s*?",
+			"applyEndPatternLast": 1,
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.control.MODULE.amiga-e"
+				}
+			},
+			"whileCaptures": {
+				"1": {
+					"name": "keyword.control.MODULE.amiga-e"
+				},
+				"2": {
+					"name": "entity.name.namespace.module.amiga-e"
+				}
+			},
+			"patterns": [
+				{
+					"name": "entity.name.namespace.module.amiga-e",
+					"match": "'.+?'"
+				},
+				{
+					"include": "#comments"
+				}
+			]
+		},
+		"constant-declarations": {
+			"name": "meta.constant-declarations.amiga-e",
+			"begin": "(CONST|ENUM|SET)\\s",
+			"while": "([A-Z]{1,2}[a-zA-Z0-9_]*)\\s*?(=|,)",
+			"applyEndPatternLast": 1,
+			"beginCaptures": {
+				"1": {
+					"name": "storage.type.const.amiga-e"
+				}
+			},
+			"whileCaptures": {
+				"1": {
+					"name": "variable.other.constant.amiga-e"
+				}
+			},
+			"patterns": [
+				{
+					"name": "variable.other.constant.amiga-e",
+					"match": "[A-Z]{1,2}[a-zA-Z0-9_]*"
+				},
+				{
+					"include": "#constants"
+				},
+				{
+					"include": "#strings"
+				},
+				{
+					"include": "#comments"
+				}
+			]
+		},
+		"variable-definitions": {
+			"name": "meta.variable-definitions.amiga-e",
+			"begin": "(DEF)",
+			"end": "$",
+			"beginCaptures": {
+				"1": {
+					"name": "storage.type.var.amiga-e"
+				}
+			},
+			"patterns": [
+				{
+					"name": "keyword.other.PTR.amiga-e",
+					"match": "(PTR TO LONG|PTR TO)"
+				},
+				{
+					"include": "#constants"
+				},
+				{
+					"include": "#strings"
+				},
+				{
+					"include": "#comments"
+				}
+			]
+		},
+		"keywords-flow-control": {
+			"name": "keyword.control.flow.RETURN.amiga-e",
+			"match": "\\b(RETURN)\\b"
+		},
+		"variables": {
+			"name": "keyword.control.amiga-e",
+			"match": "\\w.+(\\s|$|,|.|:=)"
+		},
+		"constants": {
+			"name": "constant.amiga-e",
+			"patterns": [
+				{
+					"include": "#constant-numeric"
+				},
+				{
+					"include": "#constant-character"
+				},
+				{
+					"include": "#constant-builtin"
+				}
+			],
+			"repository": {
+				"constant-numeric": {
+					"name": "constant.numeric.amiga-e",
+					"patterns": [
+						{
+							"include": "#numeric-hexadecimal"
+						},
+						{
+							"include": "#numeric-binary"
+						},
+						{
+							"include": "#numeric-float"
+						},
+						{
+							"include": "#numeric-decimal"
+						}
+					],
+					"repository": {
+						"numeric-hexadecimal": {
+							"name": "constant.numeric.hexadecimal.amiga-e",
+							"match": "-?\\$\\h+"
+						},
+						"numeric-binary": {
+							"name": "constant.numeric.binary.amiga-e",
+							"match": "-?\\%[0,1]+"
+						},
+						"numeric-float": {
+							"name": "constant.numeric.float.amiga-e",
+							"match": "-?\\d+\\.\\d+|-?\\.\\d+|-?\\d+\\."
+						},
+						"numeric-decimal": {
+							"name": "constant.numeric.decimal.amiga-e",
+							"match": "-?\\d+"
+						}
+					}
+				},
+				"constant-character": {
+					"name": "constant.character.amiga-e",
+					"begin": "\"",
+					"end": "\""
+				},
+				"constant-builtin": {
+					"name": "constant.language.amiga-e",
+					"match": "(NIL|TRUE|FALSE)"
+				}
+			}
+		},
+		"strings": {
+			"name": "string.quoted.double.amiga-e",
+			"begin": "'",
+			"end": "'",
+			"patterns": [
+				{
+					"name": "constant.character.escape.amiga-e",
+					"match": "\\\\."
+				}
+			]
+		},
+		"comments": {
+			"name": "comment.amiga-e",
+			"patterns": [
+				{
+					"include": "#comments-block"
+				},
+				{
+					"include": "#comments-line"
+				}
+			],
+			"repository": {
+				"comments-block": {
+					"name": "comment.block.amiga-e",
+					"begin": "/\\*",
+					"end": "\\*/"
+				},
+				"comments-line": {
+					"name": "comment.line.amiga-e",
+					"begin": "->",
+					"end": "$"
+				}
+			}
+		},
+		"if-one-line": {
+			"name": "meta.if.one-line.amiga-e",
+			"begin": "\\b(IF)\\b",
+			"end": "$",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.control.flow.IF.amiga-e"
+				}
+			},
+			"patterns": [
+				{
+					"name": "keyword.control.flow.THEN.amiga-e",
+					"match": "\\b(THEN)\\b"
+				},
+				{
+					"include": "#keywords-flow-control"
+				},
+				{
+					"include": "#constants"
+				}
+			]
+		},
+		"procedures": {
+			"name": "meta.function.amiga-e",
+			"begin": "(EXPORT\\s+PROC|PROC)\\s+",
+			"end": "(ENDPROC)",
+			"beginCaptures": {
+				"1": {
+					"name": "storage.modifier.EXPORT.amiga-e"
+				}
+			},
+			"endCaptures": {
+				"1": {
+					"name": "keyword.other.ENDPROC.amiga-e"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#variable-definitions"
+				},
+				{
+					"include": "#constants"
+				},
+				{
+					"include": "#strings"
+				},
+				{
+					"include": "#comments"
+				},
+				{
+					"include": "#if-one-line"
+				},
+				{
+					"name": "entity.name.function.amiga-e",
+					"match": "(\\w+)\\("
+				},
+				{
+					"include": "#keywords-flow-control"
+				}
+			]
+		}
+	}
+}

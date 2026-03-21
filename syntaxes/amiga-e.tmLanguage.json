@@ -131,8 +131,8 @@
 		},
 		"constant-declarations": {
 			"name": "meta.constant-declarations.amiga-e",
-			"begin": "(CONST)\\s",
-			"while": "([A-Z]{1,2}[a-zA-Z0-9_]*)=",
+			"begin": "(CONST|ENUM|SET)\\s",
+			"while": "([A-Z]{1,2}[a-zA-Z0-9_]*)\\s*?(=|,)",
 			"applyEndPatternLast": 1,
 			"beginCaptures": {
 				"1": {

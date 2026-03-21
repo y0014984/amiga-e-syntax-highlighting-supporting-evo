@@ -19,6 +19,9 @@
 			"include": "#storage"
 		},
 		{
+			"include": "#punctuation"
+		},
+		{
 			"include": "#keyword-operator"
 		},
 		{
@@ -153,6 +156,10 @@
 					"match": "\\b(DEF)\\b"
 				}
 			}
+		},
+		"punctuation": {
+			"name": "punctuation.separator.amiga-e",
+			"match": "(,|;)"
 		},
 		"keyword-operator": {
 			"name": "keyword.operator.amiga-e",

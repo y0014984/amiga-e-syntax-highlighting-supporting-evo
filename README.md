@@ -1,4 +1,4 @@
-# amiga-e-syntax-highlighting README
+# VSCode Amiga E Syntax Highlighting Extension (incl. E-VO compiler)
 
 ## Features
 

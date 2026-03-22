@@ -3,6 +3,10 @@
   "displayName": "Amiga E Syntax Highlighting",
   "description": "Syntax Highlighting for Amiga E incl. E-VO",
   "version": "0.0.1",
+  "publisher": "y0014984",
+  "author": {
+    "name": "y0014984"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/y0014984/amiga-e-syntax-highlighting"

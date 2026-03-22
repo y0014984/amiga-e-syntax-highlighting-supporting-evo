@@ -1,5 +1,6 @@
+- define JUMP separately which allows to color the jump label correctly
+- improve context-based syntax highlighting
 - add inline assembly recognition
-- add code snippets
 - semantic syntax highlighting:
    - distinguish 2 'module' variants: MODULE 'fvbfb' (keyword.control and entity.name.namespace) vs. OPT MODULE (keyword)
    - distinguish 2 'export' variants: EXPORT PROC|CONST|ENUM|OBJECT etc (keyword.control) vs. OPT EXPORT (keyword)
@@ -9,17 +10,10 @@
    - fix this behavior:
       - #define GAME_VERSION_STR v0.1 -> the v0.1 at the end should be highlighted in another way, not only the .1 but the full v0.1
    - classes and class objects
-- write feature list:
-   - folding for indentation (automatic by vscode)
-   - folding for non indented parts like PROC/ENDPROC (ANNOTATION: others like IF/ENDIF are problematic if there are also single line versions; indentation folding is sufficient enough)
-   - supports all keywords
-   - custom colors (TODO)
-   - code snippets (TODO)
-   - includes function description for library xy (TODO)
-   - includes semantic highlighting for e.g. function parameters (TODO)
-   - allows to jump to variable and function declarations (TODO)
-   - report typical errors like using utilitybase without OPT UTILIB
-- future improvements:
-   - add an additional light color theme
-   - indentation rules to allow automatic indentation after e.g. a PROC line (language-configuration.json)
-   - on enter rules for indentation (language-configuration.json)
+- include function description for library xy
+- report typical errors like using utilitybase without OPT UTILIB
+- add an additional light color theme
+- indentation rules to allow automatic indentation after e.g. a PROC line (language-configuration.json)
+- on enter rules for indentation (language-configuration.json)
+- "go to definition" F12
+- integration with compiler running on headless amiga and debugging via emulator

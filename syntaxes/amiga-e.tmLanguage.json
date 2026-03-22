@@ -180,11 +180,11 @@
 			"repository": {
 				"keyword-operator-variable": {
 					"name": "keyword.operator.variable.amiga-e",
-					"match": "(\\+\\+|\\-\\-|\\.|\\^|\\[|\\]|\\{|\\}|\\:=\\:|\\:=|\\:|\\?|\\s\\:\\s|==)"
+					"match": "(\\+\\+|\\-\\-|\\.|\\^|`|\\[|\\]|\\{|\\}|\\:=\\:|\\:=|\\:|\\?|\\s\\:\\s|==|<=>|\\:\\:)"
 				},
 				"keyword-operator-math": {
 					"name": "keyword.operator.math.amiga-e",
-					"match": "(\\+=|\\-=|\\*=|/=|\\+|\\-|\\*|/|<<=|>>=|<<|>>|AND=|OR=|\\|\\|=)"
+					"match": "(\\+=|\\-=|\\*=|/=|\\+|\\-|\\*|/|<<=|>>=|<<|>>|AND=|OR=|&=|\\|\\|=|\\!)"
 				},
 				"keyword-operator-math-word": {
 					"name": "keyword.operator.math.word.amiga-e",
@@ -198,7 +198,7 @@
 		},
 		"keyword-program-flow": {
 			"name": "keyword.control.flow.amiga-e",
-			"match": "\\b(IF|IFN|THEN|ELSEIF|ELSEIFN|ELSE|ENDIF|FOR|TO|STEP|DO|ENDFOR|WHILE|WHILEN|ELSEWHILE|ELSEWHILEN|ALWAYS|ENDWHILE|REPEAT|UNTIL|UNTILN|SELECT|CASE|DEFAULT|ENDSELECT|LOOP|ENDLOOP|BUT|RETURN|JUMP|EXIT|EXITN|CONT|CONTN|EXCEPT)\\b"
+			"match": "\\b(IF|IFN|THEN|ELSEIF|ELSEIFN|ELSE|ENDIF|FOR|TO|STEP|DO|ENDFOR|WHILE|WHILEN|ELSEWHILE|ELSEWHILEN|ALWAYS|ENDWHILE|REPEAT|UNTIL|UNTILN|SELECT|CASE|DEFAULT|ENDSELECT|LOOP|ENDLOOP|BUT|RETURN|JUMP|EXIT|EXITN|CONT|CONTN|EXCEPT|TRY|CATCH|ENDTRY)\\b"
 		},
 		"keyword-preprocessor": {
 			"name": "keyword.preprocessor.amiga-e",

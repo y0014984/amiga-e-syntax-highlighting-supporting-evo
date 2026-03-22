@@ -7,19 +7,42 @@
     "vscode": "^1.110.0"
   },
   "categories": [
-    "Programming Languages"
+    "Programming Languages",
+    "Themes"
   ],
   "contributes": {
-    "languages": [{
-      "id": "amiga-e",
-      "aliases": ["Amiga E", "amiga-e"],
-      "extensions": [".e"],
-      "configuration": "./language-configuration.json"
-    }],
-    "grammars": [{
-      "language": "amiga-e",
-      "scopeName": "source.e",
-      "path": "./syntaxes/amiga-e.tmLanguage.json"
-    }]
+    "languages": [
+      {
+        "id": "amiga-e",
+        "aliases": [
+          "Amiga E",
+          "amiga-e"
+        ],
+        "extensions": [
+          ".e"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "amiga-e",
+        "scopeName": "source.e",
+        "path": "./syntaxes/amiga-e.tmLanguage.json"
+      }
+    ],
+    "themes": [
+      {
+        "label": "Amiga E Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/amiga-e-dark.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "amiga-e",
+        "path": "./snippets/amiga-e.json"
+      }
+    ]
   }
 }

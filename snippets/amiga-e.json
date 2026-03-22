@@ -1,0 +1,179 @@
+{
+    "LIBRARY": {
+        "prefix": "LIBRARY",
+        "body": [
+            "LIBRARY '${1:name}.library',${2:version},${3:revision},'$1 $2.$3 ($CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE)' EXTRA ${4:size} IS ${5:functionA},${6:functionB},${7:functionC}",
+            "$0"
+        ],
+        "description": "library declaration"
+    },
+    "PROC (Function Block Multiple Lines)": {
+        "prefix": "PROC",
+        "body": [
+            "PROC ${1:label}(${2:arguments})",
+            "\t${3:statement}",
+            "ENDPROC ${4:returnvalue}",
+            "$0"
+        ],
+        "description": "function block"
+    },
+    "PROC (Function Block Single Line)": {
+        "prefix": "PROC",
+        "body": [
+            "PROC ${1:label}(${2:arguments}) IS ${3:returnvalue}",
+            "$0"
+        ],
+        "description": "function inline"
+    },
+    "PROC (Class Method Block Multiple Lines)": {
+        "prefix": "PROC",
+        "body": [
+            "PROC ${1:label}(${2:arguments}) OF ${3:class}",
+            "\t${4:statement}",
+            "ENDPROC ${5:returnvalue}",
+            "$0"
+        ],
+        "description": "class method block"
+    },
+    "PROC (Class Method Block Single Line)": {
+        "prefix": "PROC",
+        "body": [
+            "PROC ${1:label}(${2:arguments}) OF ${3:class} IS ${4:returnvalue}",
+            "$0"
+        ],
+        "description": "class method inline"
+    },
+    "IF (Conditional Block Multiple Lines)": {
+        "prefix": "IF",
+        "body": [
+            "IF ${1:expression}",
+            "\t${2:statement}",
+            "ELSEIF ${3:expression}",
+            "\t${4:statement}",
+            "ELSE",
+            "\t${5:statement}",
+            "ENDIF",
+            "$0"
+        ],
+        "description": "if conditional block multiple lines"
+    },
+    "IF (Conditional Bock Single Line)": {
+        "prefix": "IF",
+        "body": [
+            "IF ${1:expression} THEN ${2:statement} ELSE ${3:statement}",
+            "$0"
+        ],
+        "description": "if conditional block single line"
+    },
+    "WHILE (Loop Block Multiple Lines)": {
+        "prefix": "WHILE",
+        "body": [
+            "WHILE ${1:expression}",
+            "\t${2:statement}",
+            "ENDWHILE",
+            "$0"
+        ],
+        "description": "while loop block multiple lines"
+    },
+    "WHILE (Loop Block Single Line)": {
+        "prefix": "WHILE",
+        "body": [
+            "WHILE ${1:expression} DO {2:statement}",
+            "$0"
+        ],
+        "description": "while loop block single line"
+    },
+    "FOR (Loop Block Multiple Lines)": {
+        "prefix": "FOR",
+        "body": [
+            "FOR ${1:variable}:=${2:expression} TO ${3:expression} STEP ${4:step}",
+            "\t${5:statement}",
+            "ENDFOR",
+            "$0"
+        ],
+        "description": "for loop block multiple lines"
+    },
+    "FOR (Loop Block Single Line)": {
+        "prefix": "FOR",
+        "body": [
+            "FOR ${1:variable}:=${2:expression} TO ${3:expression} STEP ${4:step} DO ${5:statement}",
+            "$0"
+        ],
+        "description": "for loop block single line"
+    },
+    "REPEAT (Loop Block Multiple Lines)": {
+        "prefix": "REPEAT",
+        "body": [
+            "REPEAT",
+            "\t${1:statement}",
+            "UNTIL ${2:expression}",
+            "$0"
+        ],
+        "description": "repeat loop block multiple lines"
+    },
+    "LOOP (Loop Block Multiple Lines)": {
+        "prefix": "LOOP",
+        "body": [
+            "LOOP",
+            "\t${1:statement}",
+            "ENDLOOP",
+            "$0"
+        ],
+        "description": "simple loop block multiple lines"
+    },
+    "SELECT (Conditional Block Multiple Lines)": {
+        "prefix": "SELECT",
+        "body": [
+            "SELECT ${1:expression}",
+            "\tCASE ${2:expression}",
+            "\t\t${3:statement}",
+            "\tCASE ${4:expression}",
+            "\t\t${5:statement}",
+            "\tDEFAULT",
+            "\t\t${6:statement}",
+            "ENDSELECT",
+            "$0"
+        ],
+        "description": "select conditional block multiple lines"
+    },
+    "OBJECT (Simple Struct)": {
+        "prefix": "OBJECT",
+        "body": [
+            "OBJECT ${1:objname}",
+            "\t${2:membername}:${3:type}",
+            "ENDOBJECT",
+            "$0"
+        ],
+        "description": "object simple struct"
+    },
+    "OBJECT (Class)": {
+        "prefix": "OBJECT",
+        "body": [
+            "OBJECT ${1:objname} OF ${2:parent} ${3|PRIVATE,PUBLIC|}",
+            "\t${4|PRIVATE,PUBLIC|} ${5:membername}:${6:type}",
+            "ENDOBJECT",
+            "$0"
+        ],
+        "description": "object class"
+    },
+    "TRY (Conditional Block Multiple Lines)": {
+        "prefix": "TRY",
+        "body": [
+            "TRY",
+            "\t${1:statement}",
+            "CATCH",
+            "\t${2:statement}",
+            "ENDTRY",
+            "$0"
+        ],
+        "description": "try conditional block multiple lines"
+    },
+    "SECTION (Memory Hunk Definition)": {
+        "prefix": "SECTION",
+        "body": [
+            "SECTION ${1|CODE,DATA|},${2|PUBLIC,FAST,CHIP|}",
+            "$0"
+        ],
+        "description": "memory hunk definition"
+    }
+}

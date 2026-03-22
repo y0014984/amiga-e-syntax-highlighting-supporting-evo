@@ -276,7 +276,7 @@
 		},
 		"variable-language": {
 			"name": "variable.language.self.amiga-e",
-			"match": "\\b(self)\\b"
+			"match": "\\b(self|arg|stdout|stdin|conout|execbase|dosbase|gfxbase|intuitionbase|stdrast|wbmessage|exception|exceptioninfo|thistask|__pool|utilitybase)\\b"
 		},
 		"variable": {
 			"name": "variable.other.readwrite.amiga-e",

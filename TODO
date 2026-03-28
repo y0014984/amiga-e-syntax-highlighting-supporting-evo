@@ -1,3 +1,4 @@
+- add local vscode actions to build and publish the extension
 - define JUMP separately which allows to color the jump label correctly
 - improve context-based syntax highlighting
 - add inline assembly recognition
@@ -17,3 +18,5 @@
 - on enter rules for indentation (language-configuration.json)
 - "go to definition" F12
 - integration with compiler running on headless amiga and debugging via emulator
+- become verified publisher 6 months after release of the first extension with domain TXT record verification
+   - https://code.visualstudio.com/api/working-with-extensions/publishing-extension#verify-a-publisher

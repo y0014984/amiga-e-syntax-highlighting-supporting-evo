@@ -5,6 +5,7 @@
 - syntax highlighting of all known Amiga E keywords (incl. E-VO)
 - adjusted vscode's default dark color theme
 - code snippets
+- hover information for builtin functions
 
 ## Requirements
 
@@ -20,6 +21,6 @@
 
 ## Release Notes
 
-### 1.0.0
+### 0.0.3 (2026-03-29)
 
-Initial release of Amiga E Syntax Highlighting (with E-VO support)
+- Added hover for builtin functions

@@ -21,6 +21,6 @@
 
 ## Release Notes
 
-### 0.0.3 (2026-03-29)
+### 0.0.4 (2026-04-04)
 
-- Added hover for builtin functions
+- Added completion for builtin functions

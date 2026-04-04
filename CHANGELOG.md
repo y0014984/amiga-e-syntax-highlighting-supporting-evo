@@ -1,5 +1,9 @@
 # Change Log
 
+## [v0.0.4 2026-04-04]
+
+- Added completion for builtin functions
+
 ## [v0.0.3 2026-03-29]
 
 - Added hover for builtin functions

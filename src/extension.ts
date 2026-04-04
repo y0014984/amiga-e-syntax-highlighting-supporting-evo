@@ -11,6 +11,52 @@ export function activate(context: vscode.ExtensionContext) {
     // This line of code will only be executed once when your extension is activated
     console.log('Congratulations, your extension is now active!');
 
+    // ----------------------------------------
+
+    const builtinFunctionsCompletionProvider = vscode.languages.registerCompletionItemProvider('amiga-e', {
+
+        provideCompletionItems(_document: vscode.TextDocument, _position: vscode.Position, _token: vscode.CancellationToken, _context: vscode.CompletionContext) {
+
+            // add all functions as completion items
+            const simpleCompletions: Array<vscode.CompletionItem> = [];
+
+            builtin.NotepadPlus.AutoComplete.KeyWord.forEach(element => {
+                simpleCompletions.push(new vscode.CompletionItem(element._name, vscode.CompletionItemKind.Function));
+            });
+
+            return simpleCompletions;
+        }
+    });
+
+    // ----------------------------------------
+
+    context.subscriptions.push(builtinFunctionsCompletionProvider);
+
+    // ----------------------------------------
+
+    /*
+    const consoleInlineProvider = vscode.languages.registerInlineCompletionItemProvider('amiga-e', {
+
+        provideInlineCompletionItems(_document: vscode.TextDocument, _position: vscode.Position, _context: vscode.InlineCompletionContext, _token: vscode.CancellationToken) {
+            const result: vscode.InlineCompletionList = {
+                items: []
+            };
+
+            result.items.push({
+                insertText: new vscode.SnippetString('WriteF(\'DEBUG: variablename: \\d\\n\',variable)'),
+            });
+
+            return result;
+        }
+    });
+
+    // ----------------------------------------
+
+    context.subscriptions.push(consoleInlineProvider);
+    */
+
+    // ----------------------------------------
+
     vscode.languages.registerHoverProvider('amiga-e', {
         provideHover(document, position, token) {
             const range = document.getWordRangeAtPosition(position);
@@ -25,7 +71,7 @@ export function activate(context: vscode.ExtensionContext) {
             /*
             type FunctionName = string
             type FunctionDescription = string
-
+    
             const functionsTable: Record<FunctionName, FunctionDescription> = {
                 String: "```amiga-e\ns:=String(maxlen)\n```\n\n`DEF s[80]:STRING` is equivalent to `DEF s` and `s:=String(80)`",
                 StrCmp: "```amiga-e\nbool:=StrCmp(string,string,len=ALL)\n```\n\ncompares two strings. `len` must be the number of bytes to compare,\n\nor 'ALL' if the full length is to be compared. Returns `TRUE` or `FALSE`\n\n(len is a default argument (see  6F ))",
@@ -41,7 +87,7 @@ export function activate(context: vscode.ExtensionContext) {
                 MidStr: "```amiga-e\nMidStr(estring,string,pos,len=ALL)\n```\n\ncopies any number of characters (including all if `len=ALL`) from\n\nposition `pos` in `string` to `estring`\n\nNOTEZ BIEN: in all string related functions where a position in a\n\nstring is used, the first character in a string has position 0,\n\nnot 1, as is common in languages like BASIC.\n\nreturns the `estring`."
             };
             const functionMapper = (f: FunctionName): FunctionDescription | undefined => functionsTable[f] || undefined;
-
+    
             const description = functionMapper(word);
             if (!description) return undefined // function description not found
             */

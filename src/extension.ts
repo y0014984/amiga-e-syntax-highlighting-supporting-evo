@@ -3,6 +3,9 @@
 import * as vscode from 'vscode';
 
 import builtin from '../data/builtin-functions.json'; // file contains the builtin function descriptions
+import { AmigaEDocumentSymbolProvider } from './AmigaEDocumentSymbolProvider';
+
+const LANG_NAME = 'amiga-e';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -13,7 +16,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     // ----------------------------------------
 
-    const builtinFunctionsCompletionProvider = vscode.languages.registerCompletionItemProvider('amiga-e', {
+    const builtinFunctionsCompletionProvider = vscode.languages.registerCompletionItemProvider(LANG_NAME, {
 
         provideCompletionItems(_document: vscode.TextDocument, _position: vscode.Position, _token: vscode.CancellationToken, _context: vscode.CompletionContext) {
 
@@ -35,7 +38,7 @@ export function activate(context: vscode.ExtensionContext) {
     // ----------------------------------------
 
     /*
-    const consoleInlineProvider = vscode.languages.registerInlineCompletionItemProvider('amiga-e', {
+    const consoleInlineProvider = vscode.languages.registerInlineCompletionItemProvider(LANG_NAME, {
 
         provideInlineCompletionItems(_document: vscode.TextDocument, _position: vscode.Position, _context: vscode.InlineCompletionContext, _token: vscode.CancellationToken) {
             const result: vscode.InlineCompletionList = {
@@ -57,7 +60,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     // ----------------------------------------
 
-    vscode.languages.registerHoverProvider('amiga-e', {
+    vscode.languages.registerHoverProvider(LANG_NAME, {
         provideHover(document, position, token) {
             const range = document.getWordRangeAtPosition(position);
             if (!range) return undefined // no word found
@@ -133,6 +136,11 @@ export function activate(context: vscode.ExtensionContext) {
             return new vscode.Hover(md);
         }
     });
+
+    // ----------------------------------------
+
+    const outlineProvider = vscode.languages.registerDocumentSymbolProvider(LANG_NAME, new AmigaEDocumentSymbolProvider());
+    context.subscriptions.push(outlineProvider);
 }
 
 // this method is called when your extension is deactivated
